@@ -7,7 +7,10 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody playerRb;
     private Animator playerAnim;
+
     public ParticleSystem explosionParticle;
+    public ParticleSystem dirtParticle;
+
     public float jumpSpeed;
     public float gravityModifier;
     private bool isOnGround = true;
@@ -28,6 +31,7 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
             isOnGround = false;
             playerAnim.SetTrigger("Jump_trig");
+            dirtParticle.Play();
         }
     }
 
@@ -44,6 +48,7 @@ public class PlayerController : MonoBehaviour
             playerAnim.SetBool("Death_b", true);
             playerAnim.SetInteger("DeathType_int", 1);
             explosionParticle.Play();
+            dirtParticle.Stop();
         }
         
     }
