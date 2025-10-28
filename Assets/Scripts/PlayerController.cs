@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
             playerRb.AddForce(Vector3.up * jumpSpeed, ForceMode.Impulse);
             isOnGround = false;
             playerAnim.SetTrigger("Jump_trig");
-            dirtParticle.Play();
+            dirtParticle.Stop();
             playerAudio.PlayOneShot(jumpSound, 1.0f);
         }
     }
@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+            dirtParticle.Play();
         }
         else if(collision.gameObject.CompareTag("Obstacle"))
         {
